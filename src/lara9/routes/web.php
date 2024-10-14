@@ -13,8 +13,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/conversions', [\App\Http\Controllers\ConversionController::class, 'index']);
+Route::get('/', [\App\Http\Controllers\ConversionController::class, 'index']);

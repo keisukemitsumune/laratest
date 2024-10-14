@@ -9,3 +9,5 @@ RUN set -eux && \
     apk add --no-cache icu-dev icu-data-full libzip-dev git zip unzip oniguruma-dev && \
     docker-php-ext-install intl pdo_mysql mbstring zip bcmath opcache && \
     apk add make
+
+COPY ./php.ini /usr/local/etc/php/php.ini

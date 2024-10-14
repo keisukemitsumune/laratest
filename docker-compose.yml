@@ -1,7 +1,7 @@
 services:
 
-  db:
-    container_name: db
+  laratest-db:
+    container_name: laratest-db
     image: mysql:8.3.0
     platform: linux/amd64
     ports:

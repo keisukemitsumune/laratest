@@ -14,7 +14,7 @@ up:
 
 
 db:
-		docker compose exec db bash
+		docker compose exec laratest-db bash
 
 
 app5:

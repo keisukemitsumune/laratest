@@ -11,6 +11,6 @@ class ConversionSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Models\Conversion::class, 20000)->create();
+        factory(\App\Models\Conversion::class, 200)->create();
     }
 }

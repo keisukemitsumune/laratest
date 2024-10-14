@@ -7,4 +7,5 @@ RUN set -eux && \
     mv composer.phar /usr/local/bin/composer && \
     apk update && \
     apk add --no-cache icu-dev icu-data-full libzip-dev git zip unzip oniguruma-dev && \
-    docker-php-ext-install intl pdo_mysql mbstring zip bcmath opcache
+    docker-php-ext-install intl pdo_mysql mbstring zip bcmath opcache && \
+    apk add make

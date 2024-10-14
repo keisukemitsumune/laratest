@@ -1,0 +1,59 @@
+services:
+
+  db:
+    container_name: db
+    image: mysql:8.3.0
+    platform: linux/amd64
+    ports:
+      - "33060:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: testdb
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pass
+    volumes:
+      - ./docker/db/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ./docker/db/data:/var/lib/mysql
+      - ./docker/db/scripts:/docker-entrypoint-initdb.d
+
+  lara5-web:
+    container_name: lara5-web
+    build:
+      context: ./docker/lara5/nginx
+      dockerfile: Dockerfile
+    ports:
+      - "8885:80"
+    volumes:
+      - ./src/lara5:/work:cached
+    depends_on:
+      - lara5-app
+
+  lara5-app:
+    container_name: lara5-app
+    build:
+      context: ./docker/lara5/php
+      dockerfile: Dockerfile
+    volumes:
+      - ./src/lara5:/work:cached
+    working_dir: /work
+
+  lara9-web:
+    container_name: lara9-web
+    build:
+      context: ./docker/lara9/nginx
+      dockerfile: Dockerfile
+    ports:
+      - "8889:80"
+    volumes:
+      - ./src/lara9:/work:cached
+    depends_on:
+      - lara9-app
+
+  lara9-app:
+    container_name: lara9-app
+    build:
+      context: ./docker/lara9/php
+      dockerfile: Dockerfile
+    volumes:
+      - ./src/lara9:/work:cached
+    working_dir: /work
